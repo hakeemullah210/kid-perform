@@ -8,8 +8,8 @@ export default class Judge extends React.Component {
     }
 
     applaud() {
-        
-        console.log('appluad calling');
+
+        // console.log('appluad calling');
         this.props.getApplaud()
     }
 
@@ -18,20 +18,19 @@ export default class Judge extends React.Component {
 
         this.setState({ stars: stars + 1 })
         this.setState({
-            stars:stars+'*'
+            stars: stars + '*'
         })
     }
 
     shouldComponentUpdate(props, nextState) {
         // console.log(nextState.stars)
-        if(nextState.stars.length >5){
+        if (nextState.stars.length > 5) {
             return false
         }
         return true
     }
 
-
-    render() {
+  render() {
         const { stars, available } = this.state;
 
         return (
@@ -39,14 +38,15 @@ export default class Judge extends React.Component {
                 <button type="button" onClick={this.applaud.bind(this)}>
                     Appreciate performance
             </button>
-            <br/>
+                <br />
                 <button type="button" onClick={this.provideStars.bind(this)}>
                     Provide stars
             </button>
-<br/>
+                <br />
                 Kid is available: {available}
 
-                Stars gained: <br/> {stars}
+                Stars gained:  {stars}
+             
             </div>
         );
     }
