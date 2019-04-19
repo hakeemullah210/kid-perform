@@ -14,12 +14,14 @@ class App extends Component {
     }
     this.updateSteps = this.updateSteps.bind(this)
     this.getApplaud=this.getApplaud.bind(this)
+    this.qualified=this.qualified.bind(this);
 
   }
   static getDerivedStateFromProps() {
     // console.log('get')
     return {
       volume: 5,
+
     }
   }
   updateSteps(steps) {
@@ -30,7 +32,8 @@ class App extends Component {
   getApplaud() {
     // console.log('applaudPerform',emo)
     this.setState({isApplaud:true})
-    console.log('getApplaud',this.state.isApplaud)
+    console.log('getApplaud calling',this.state.isApplaud);
+
   }
   qualified(){
     this.setState({isQualified:true})
@@ -38,6 +41,7 @@ class App extends Component {
 
   render() {
     const { volume, furtherSteps } = this.state
+    // console.log('render',this.state.isApplaud)
     // console.log('volume', volume)
     // console.log('furtherSteps', furtherSteps)
     // console.log('emotion',this.state.emotion)
@@ -45,7 +49,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Kid dressColor='yellow' applaud={this.isApplaud} furtherSteps={furtherSteps} emotion={this.state.emotion} />
+          <Kid dressColor='yellow' applaud={this.state.isApplaud} furtherSteps={furtherSteps}  />
           <Teacher updateSteps={this.updateSteps} />
           <Judge getApplaud={this.getApplaud} qualified={this.qualified}/>
         </header>

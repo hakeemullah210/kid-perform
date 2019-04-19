@@ -3,14 +3,13 @@ export default class Judge extends React.Component {
     constructor() {
         super()
 
-        this.state = { stars: 0, available: false }
+        this.state = { stars: '', available: false }
         this.applaud = this.applaud.bind(this)
     }
 
     applaud() {
-        //Send this applaud status to Kid.js
-        // console.log('======>applaud calling')
-        //   var  emo='happy'
+        
+        console.log('appluad calling');
         this.props.getApplaud()
     }
 
@@ -18,14 +17,19 @@ export default class Judge extends React.Component {
         const { stars } = this.state;
 
         this.setState({ stars: stars + 1 })
+        this.setState({
+            stars:stars+'*'
+        })
     }
+
     shouldComponentUpdate(props, nextState) {
         // console.log(nextState.stars)
-        if(nextState.stars >5){
+        if(nextState.stars.length >5){
             return false
         }
         return true
     }
+
 
     render() {
         const { stars, available } = this.state;
@@ -35,13 +39,14 @@ export default class Judge extends React.Component {
                 <button type="button" onClick={this.applaud.bind(this)}>
                     Appreciate performance
             </button>
+            <br/>
                 <button type="button" onClick={this.provideStars.bind(this)}>
                     Provide stars
             </button>
-
+<br/>
                 Kid is available: {available}
 
-                Stars gained: {stars}
+                Stars gained: <br/> {stars}
             </div>
         );
     }

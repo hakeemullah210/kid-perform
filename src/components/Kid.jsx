@@ -8,7 +8,10 @@ export default class Kid extends React.Component {
   }
 
   qualified() {
-    this.setState({ startedPerforming: false })
+    if(this.state.startedPerforming && this.props.applaud ){
+
+      this.setState({ startedPerforming: false })
+    }
   }
   componentDidMount() {
     // console.log('Kid', 'componentDidMount')
@@ -22,11 +25,20 @@ export default class Kid extends React.Component {
         startedPerforming:true
       }
     }
-  
-    
+    if(props.applaud){
+      console.log('get=====>',props.applaud)
+      return{
+        emotion:'happy'
+      }
+    }
+  }
+
+  componentDidUpdate(){
+    // console.log('componentDidUpdate')
+    this.qualified();
   }
   render() {
-    console.log(this.props.applaud)
+    console.log(this.props)
     const { dressColor,furtherSteps } = this.props;
     const { danceSteps, emotion, startedPerforming, currentStepIndex } = this.state;
     // console.log('danceSteps',danceSteps)
